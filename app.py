@@ -42,6 +42,10 @@ def add_birthday():
     db.session.commit()
     return jsonify ({"message": "Birthday added successfully!"}), 201
 
+@app.route("/", methods=["GET"])
+def home():
+    return "Welcome to the Office Dashboard API!", 200
+
 #Run the app
 if __name__ == '__main__':
     with app.app_context():
