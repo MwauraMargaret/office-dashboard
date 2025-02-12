@@ -9,7 +9,7 @@ CORS (app)# Allows Power Bi to fetch data
 
 #Configuring SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///office_dashboard.db'
-app.config_class['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app (app)
 
 #API Endpoint
