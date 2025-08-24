@@ -1,11 +1,10 @@
 # Job Application Tracker API
 
-A Django REST Framework project for managing job applications.  
-Recruiters can create companies and jobs; applicants can apply for jobs and attend interviews.  
-Admins oversee the whole system.
+A Django REST Framework project for managing job applications where recruiters can create companies and jobs, applicants can apply for jobs and attend interviews and admins oversee the whole system.
 
 Here is the project home page:
-![Homepage](assets/homepage.png)
+
+![Homepage](images/homepage.png)
 ---
 
 ## Group Members
@@ -73,9 +72,6 @@ User (recruiter) ── owns ──> Company ── posts ──> Job
 User (applicant) ── applies ──> Application ── relates to ──> Job
 Application ── schedules ─> Interview
 ```
-
-
-
 ---
 
 ### 2. Serializers & Views
@@ -119,7 +115,7 @@ Below are screenshots as proof of functionality and permissions.
 ### Admin Dashboard
 Superuser (alice) logged into the admin site and can see all models:
 
-![Admin Dashboard](assets/admin_dashboard.png)
+![Admin Dashboard](images/admin_dashboard.png)
 
 ---
 
@@ -129,47 +125,41 @@ Created users:
 - `Bob` (recruiter)  
 - `Wambui` (applicant)  
 
-![Users List](assets/users_list.png)
+![Users List](images/users.png)
+
+### Basic Authentication
+With correct authentication details:
+![Basic Auth](images/basic-auth-test.png)
+
+With incorrect authentication details:
+![Basic Auth](images/basic-auth-test2.png)
 
 ---
 
 ### Companies
-Recruiter (bob) successfully creates a company:
+Successfull company profile created:
 
-![Company Created](assets/company_created.png)
+![Company Created](images/companies.png)
 
-Applicant (wambui) forbidden from creating a company:
-
-![Applicant Forbidden Company](assets/applicant_forbidden_company.png)
-
----
 
 ### Jobs
-Recruiter (bob) successfully posts a job:
+Successfull job posted:
 
-![Job Created](assets/job_created.png)
-
-Applicant (wambui) cannot post jobs:
-
-![Applicant Forbidden Job](assets/applicant_forbidden_job.png)
+![Job Created](images/jobs.png)
 
 ---
 
 ### Applications
-Applicant (wambui) applies for a job:
+Applicant applies for a job:
 
-![Application Submitted](assets/application_submitted.png)
-
-Recruiter (bob) can view applications for their jobs:
-
-![Recruiter View Applications](assets/recruiter_view_applications.png)
+![Application Submitted](images/applications.png)
 
 ---
 
 ### Interviews
 Recruiter schedules an interview for an application:
 
-![Interview Scheduled](assets/interview_scheduled.png)
+![Interview Scheduled](images/interviews.png)
 
 ---
 
@@ -181,5 +171,6 @@ python manage.py drf_create_token alice
 python manage.py drf_create_token bob
 python manage.py drf_create_token wambui
 ```
-
+2. Test the tokens via Postman:
+![Test Token](images/token-auth.png)   
 
