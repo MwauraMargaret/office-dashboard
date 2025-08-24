@@ -2,8 +2,10 @@
 
 A Django REST Framework project for managing job applications.  
 Recruiters can create companies and jobs; applicants can apply for jobs and attend interviews.  
-Admins oversee the whole system.  
+Admins oversee the whole system.
 
+Here is the project home page:
+![Homepage](assets/homepage.png)
 ---
 
 ## Group Members
@@ -65,13 +67,18 @@ http://127.0.0.1:8000/
 - **Application** → links applicant → job with status (`applied`, `screening`, `interview`, `offer`, `rejected`)  
 - **Interview** → linked to an application, stores date, mode, notes  
 
-**Relationships diagram:**
+**Relationships:**
+```pgsql
+User (recruiter) ── owns ──> Company ── posts ──> Job
+User (applicant) ── applies ──> Application ── relates to ──> Job
+Application ── schedules ─> Interview
+```
 
 
 
 ---
 
-### 2. 🔄 Serializers & Views
+### 2. Serializers & Views
 
 - **Serializers**: Convert models to JSON.  
   - `UserSerializer`  
@@ -89,7 +96,7 @@ http://127.0.0.1:8000/
 
 ---
 
-### 3. 🌐 URLs
+### 3. URLs
 
 Base URL: `http://127.0.0.1:8000/`
 
@@ -102,17 +109,77 @@ Base URL: `http://127.0.0.1:8000/`
 
 ---
 
-### 4. Authentication & Permissions
+### 4. Testing Evidence
 
-#### Basic Authentication
-- Test with username/password  
-- **Applicants**: can view jobs, apply  
-- **Recruiters**: can add companies/jobs  
-- **Admins**: full access  
+We tested the API using **Postman** and the **Django admin site**.  
+Below are screenshots as proof of functionality and permissions.
+
+---
+
+### Admin Dashboard
+Superuser (alice) logged into the admin site and can see all models:
+
+![Admin Dashboard](assets/admin_dashboard.png)
+
+---
+
+### Users
+Created users:
+- `alice` (superuser)  
+- `Bob` (recruiter)  
+- `Wambui` (applicant)  
+
+![Users List](assets/users_list.png)
+
+---
+
+### Companies
+Recruiter (bob) successfully creates a company:
+
+![Company Created](assets/company_created.png)
+
+Applicant (wambui) forbidden from creating a company:
+
+![Applicant Forbidden Company](assets/applicant_forbidden_company.png)
+
+---
+
+### Jobs
+Recruiter (bob) successfully posts a job:
+
+![Job Created](assets/job_created.png)
+
+Applicant (wambui) cannot post jobs:
+
+![Applicant Forbidden Job](assets/applicant_forbidden_job.png)
+
+---
+
+### Applications
+Applicant (wambui) applies for a job:
+
+![Application Submitted](assets/application_submitted.png)
+
+Recruiter (bob) can view applications for their jobs:
+
+![Recruiter View Applications](assets/recruiter_view_applications.png)
+
+---
+
+### Interviews
+Recruiter schedules an interview for an application:
+
+![Interview Scheduled](assets/interview_scheduled.png)
+
+---
 
 ### Token Authentication
-1. Generate tokens in terminal:
+1. Generate tokens via terminal:
+
 ```bash
 python manage.py drf_create_token alice
 python manage.py drf_create_token bob
 python manage.py drf_create_token wambui
+```
+
+
