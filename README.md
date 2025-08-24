@@ -9,7 +9,7 @@ Admins oversee the whole system.
 ## Group Members
 - 149264 Mwaura Margaret Wambui
 -  
-- [Add the rest of your group members with IDs here]
+- 
 
 ---
 
@@ -53,6 +53,7 @@ Server will start at:
 ```cpp
 http://127.0.0.1:8000/
 ```
+---
 
 ## Project Details
 
